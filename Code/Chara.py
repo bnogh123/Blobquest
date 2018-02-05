@@ -1,38 +1,30 @@
 from RagnarokEngine3 import RE3 as R
-import pygame
-import os
 
 
-class Chara(R.DrawableObj):
+class Chara(R.TileMapObject):
 
-    def __init__(self, draw_order, update_order, stats):
-        super(Chara, self).__init__(draw_order, update_order, stats)
-        self.stats = stats
+    def __init__(self, tileMap, stats, name):
+        super(Chara, self).__init__(tileMap)
+        self.__name__ = name
+        self.__stats__ = stats
 
-        chara_path = os.path.join("Textures", "Sun.png")
-        self.chara = R.Sprite()
-        self.chara.load_texture(chara_path)
+    def getStats(self):
+        return self.__stats__
 
-        # Get backbuffer size gets the size of the screen. We divide by 2 to get the center, and then set
-        # the chara's coords to the result, placing the chara at the center of the window as its default position.
-        self.chara.coords = R.Ragnarok.get_world().get_backbuffer_size() / 2.0
+    def setStats(self, stats):
+        self.__stats__ = stats
 
-    def __getStats__(self):
-        return self.stats
-
-    def __setStats__(self, stats):
-        self.stats = stats
+    def getName(self):
+        return self.__name__
 
 
 class Stats:
-    __attack = 2
 
     def __init__(self, attack):
-        super(self, attack)
-        self.attack = attack
+        self.__attack__ = attack
 
     def setAttack(self, value):
-        self.__attack = value
+        self.__attack__ = value
 
-    def getattack(self, value):
-        return self.__attack
+    def getAttack(self):
+        return self.__attack__
