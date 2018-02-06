@@ -28,3 +28,31 @@ class Stats:
 
     def getAttack(self):
         return self.__attack__
+
+    # Check
+    # speed
+    # If
+    # hp - atk < 0, hp = 0
+    # Win
+    # Else, hp = hp - atk
+    #
+    # Whichever
+    # character
+    # sends
+    # the
+    # attack
+    # make
+    # sure
+    # that
+    # an
+    # enemy is selected
+    # Do
+    # the
+    # attack
+    # calculations
+    # Damage
+    # other
+    # enemy
+    # ???
+    # Profit
+    # Repeat
