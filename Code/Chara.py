@@ -68,3 +68,25 @@ class Stats:
     # ???
     # Profit
     # Repeat
+
+    # Later on once we have stats:
+    # Check speed.
+    # Faster goes first
+    # Magic or physical
+    # Magic:
+    # Subtract Mp if needed
+    # Hit or Miss?
+    # Random number, must be under or equal to evade chance to miss
+    # Some calculation for accuracy maybe?
+    # Or limit evasion-raising items a lot
+    # Dodge tanks are fun though
+    # Crit?
+    # Random number, must be under or equal to crit chance to hit
+    # If crit, atk damage *1.5
+    # Multiply by command multipliers/weapon multipliers
+    # Multiply by weakness multipliers (>1 for super effective attacks, <1 for ineffective)
+    # Maybe situational multipliers (more damage for X type of enemy, etc.)
+    # Hp-(Final attack value * ([(def/100)*multiplier if specifically guarding])
+    # Notes:
+    # Maybe have speed influence turn order?
+    # Higher speeds if high enough may have two turns or more before the enemy has a single turn
