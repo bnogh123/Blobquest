@@ -1,6 +1,7 @@
 from RagnarokEngine3 import RE3 as r
 import os
 import pygame
+from .Chara import Chara
 
 engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
 world = engine.get_world()
@@ -22,14 +23,14 @@ pc = r.Sprite()
 pc.load_texture(pc_path)
 pc.scale_to(world.get_backbuffer_size())
 
-# bulb_path = os.path.join("..//Bulbs.png")
+bulb_path = os.path.join("..//bulbs-1.png")
 # bulbSheet = r.SpriteSheet()
-# bulbSheet.load_texture(bulb_path, cell_size = (24, 20))
-# bulb = r.Sprite()
-# bulb.load_texture(bulbSheet.__getitem__(1))
-#
-# world.add_obj(bulb)
+# bulbSheet.load_texture(bulb_path, cell_size = (23, 222))
+bulb = Chara.Chara()
+bulb.load_texture(bulb_path)
+
 world.add_obj(pc)
+world.add_obj(bulb)
 
 # runs engine, starting the game
 engine.run()

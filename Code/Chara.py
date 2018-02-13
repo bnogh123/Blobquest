@@ -1,4 +1,5 @@
 from RagnarokEngine3 import RE3 as R
+import pygame
 
 
 class Chara(R.TileMapObject):
@@ -16,6 +17,17 @@ class Chara(R.TileMapObject):
 
     def get_name(self):
         return self.__name__
+
+    def update(self, milliseconds):
+        # Get the location of the mouse.
+        mouse_pos = pygame.mouse.get_pos()
+
+        # Set the location of the sun and its rays to the current mouse location.
+        self.Chara.coords.X = mouse_pos[0]
+        self.Chara.coords.Y = mouse_pos[1]
+
+        # (Optional) Call the update method of the base class (DrawableObj).
+        super(self, Chara).update(milliseconds)
 
 
 class Stats:
