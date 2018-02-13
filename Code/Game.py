@@ -30,6 +30,7 @@ bulb.coords = (0,0)
 bulb.load_texture(bulb_path)
 
 world.add_obj(pc)
+
 world.add_obj(bulb)
 
 # runs engine, starting the game
