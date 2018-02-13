@@ -24,9 +24,9 @@ pc.load_texture(pc_path)
 pc.scale_to(world.get_backbuffer_size())
 
 bulb_path = os.path.join("..//bulbs-1.png")
-# bulbSheet = r.SpriteSheet()
-# bulbSheet.load_texture(bulb_path, cell_size = (23, 222))
-bulb = Chara.Chara()
+pokemon_center = r.TileMap()
+bulb = r.TileMapObject()
+bulb.coords = (0,0)
 bulb.load_texture(bulb_path)
 
 world.add_obj(pc)
