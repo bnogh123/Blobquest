@@ -1,7 +1,7 @@
 from RagnarokEngine3 import RE3 as r
 import os
 from Code import Mob
-import pygame
+# import pygame
 
 
 class Game:
