@@ -1,9 +1,10 @@
 from RagnarokEngine3 import RE3 as r
 import os
-from Code import Chara as c
+from Code import Mob
+import pygame
 
 
-class Game():
+class Game:
 
     engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
     world = engine.get_world()
@@ -20,7 +21,7 @@ class Game():
     # bulb = r.Sprite()
     # bulb.load_texture(bulb_path)
     # bulb.scale = (2, 2)
-    bulb = c.Chara("bulb", bulb_path)
+    bulb = Mob.Chara("bulb", bulb_path)
 
     world.add_obj(pc)
     world.add_obj(bulb)
@@ -39,7 +40,7 @@ class Game():
     #
     #     def update(self, milliseconds):
     #         if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_LEFT):
-    #             x_counter -= 1
+    #             self.up
     #         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_RIGHT):
     #             x_counter += 1
     #         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_UP):

@@ -3,24 +3,24 @@ from RagnarokEngine3 import RE3 as r
 
 class Chara(r.Sprite):
 
-    def __init__(self,  stats, name, path):
-        super(Chara, self).__init__()
-        self.bulb = r.Sprite()
-        self.bulb.load_texture(path)
-        self.bulb.scale = (2, 2)
-
-        # The x counter states the number of tiles away horizontally the
-        # character is from the center tile, and the y counter vertically
-        self.xCounter = 0
-        self.yCounter = 0
-        self.__name__ = name
-        self.__stats__ = stats
+    # def __init__(self,  stats, name, path):
+    #     super(Chara, self).__init__()
+    #     self.Chara = r.Sprite()
+    #     self.Chara.load_texture(path)
+    #     self.Chara.scale = (2, 2)
+    #
+    #     # The x counter states the number of tiles away horizontally the
+    #     # character is from the center tile, and the y counter vertically
+    #     self.xCounter = 0
+    #     self.yCounter = 0
+    #     self.__name__ = name
+    #     self.__stats__ = stats
 
     def __init__(self, name, path):
-        super(Chara, self).__init__()
-        self.bulb = r.Sprite()
-        self.bulb.load_texture(path)
-        self.bulb.scale = (2, 2)
+        super(r.Sprite, self).__init__()
+        self.Chara = r.Sprite()
+        self.Chara.load_texture(path)
+        self.Chara.scale = (2, 2)
 
         # The x counter states the number of tiles away horizontally the
         # character is from the center tile, and the y counter vertically
@@ -50,7 +50,7 @@ class Chara(r.Sprite):
         self.Chara.coords.Y += self.yCounter
 
         # (Optional) Call the update method of the base class (DrawableObj).
-        super(self, Chara).update(milliseconds)
+        super(r.Sprite, self).update(milliseconds)
 
     def up_one(self):
         self.yCounter += 1

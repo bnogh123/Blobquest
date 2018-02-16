@@ -1,1 +1,1 @@
-from Chara import Chara
+# from Chara import Chara
