@@ -1,40 +1,50 @@
 from RagnarokEngine3 import RE3 as r
 import os
-import pygame
-# from .Chara import Chara
+from Code import Chara as c
 
 
-class Game:
+class Game():
+
     engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
     world = engine.get_world()
     world.clear_color = (0, 0, 0)
 
-    # class ExitManager(r.UpdatableObj):
-    #     """
-    #     In this case, allows the Esc button to exit the game.
-    #     """
-    #
-    #     def update(self, milliseconds):
-    #         if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_ESCAPE):
-    #             engine.exit()
-
-
     pc_path = os.path.join("..//pokemon center.png")
     pc = r.Sprite()
     pc.load_texture(pc_path)
-    pc.scale_to(world.get_backbuffer_size())
+    scale = world.get_backbuffer_size()
+    pc.scale_to(scale)
 
+    # pokemon_center = r.TileMap(white.png)
     bulb_path = os.path.join("..//bulbs-1.png")
-    # pokemon_center = r.TileMap()
-    bulb = r.Sprite()
-    # bulb.coords = (0,0)
-    bulb.load_texture(bulb_path)
+    # bulb = r.Sprite()
+    # bulb.load_texture(bulb_path)
+    # bulb.scale = (2, 2)
+    bulb = c.Chara("bulb", bulb_path)
 
     world.add_obj(pc)
     world.add_obj(bulb)
 
+    def get_engine(self):
+        return self.engine
+
+    def get_world(self):
+        return self.world
+
     def run_game(self):
         # runs engine, starting the game
         self.engine.run()
+
+    # class KeyboardManager(r.UpdatableObj):
+    #
+    #     def update(self, milliseconds):
+    #         if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_LEFT):
+    #             x_counter -= 1
+    #         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_RIGHT):
+    #             x_counter += 1
+    #         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_UP):
+    #             y_counter += 1
+    #         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_DOWN):
+    #             y_counter -= 1
 
 

@@ -1,13 +1,38 @@
-from RagnarokEngine3 import RE3 as R
-import pygame
+from RagnarokEngine3 import RE3 as r
 
 
-class Chara(R.TileMapObject):
+class Chara(r.Sprite):
 
-    def __init__(self, tileMap, stats, name):
-        super(Chara, self).__init__(tileMap)
+    def __init__(self,  stats, name, path):
+        super(Chara, self).__init__()
+        self.bulb = r.Sprite()
+        self.bulb.load_texture(path)
+        self.bulb.scale = (2, 2)
+
+        # The x counter states the number of tiles away horizontally the
+        # character is from the center tile, and the y counter vertically
+        self.xCounter = 0
+        self.yCounter = 0
         self.__name__ = name
         self.__stats__ = stats
+
+    def __init__(self, name, path):
+        super(Chara, self).__init__()
+        self.bulb = r.Sprite()
+        self.bulb.load_texture(path)
+        self.bulb.scale = (2, 2)
+
+        # The x counter states the number of tiles away horizontally the
+        # character is from the center tile, and the y counter vertically
+        self.xCounter = 0
+        self.yCounter = 0
+
+        # This defines the name of the character
+        self.__name__ = name
+
+        # This makes a new stat in case stats weren't given
+        new_stat = Stats(0)
+        self.__stats__ = new_stat
 
     def get_stats(self):
         return self.__stats__
@@ -19,15 +44,25 @@ class Chara(R.TileMapObject):
         return self.__name__
 
     def update(self, milliseconds):
-        # Get the location of the mouse.
-        mouse_pos = pygame.mouse.get_pos()
 
         # Set the location of the sun and its rays to the current mouse location.
-        self.Chara.coords.X = mouse_pos[0]
-        self.Chara.coords.Y = mouse_pos[1]
+        self.Chara.coords.X += self.xCounter
+        self.Chara.coords.Y += self.yCounter
 
         # (Optional) Call the update method of the base class (DrawableObj).
         super(self, Chara).update(milliseconds)
+
+    def up_one(self):
+        self.yCounter += 1
+
+    def down_one(self):
+        self.yCounter -= 1
+
+    def right_one(self):
+        self.yCounter += 1
+
+    def left_one(self):
+        self.yCounter -= 1
 
 
 class Stats:
@@ -35,10 +70,10 @@ class Stats:
     def __init__(self, attack):
         self.__attack__ = attack
 
-    def setAttack(self, value):
+    def set_attack(self, value):
         self.__attack__ = value
 
-    def getAttack(self):
+    def get_attack(self):
         return self.__attack__
 
     # Check
