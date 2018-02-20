@@ -65,17 +65,30 @@ class Chara(r.Sprite):
     def left_one(self):
         self.yCounter -= 1
 
+    def attack(target):
+        if target.get_hp - self.get_attack<0:
+            target.set_hp(0)
+            print ("You win!")
+        else:
+            target.set_hp(target.get_hp - self.get_attack)
 
 class Stats:
 
-    def __init__(self, attack):
+    def __init__(self, attack, hp):
         self.__attack__ = attack
+        self.__hp__ = hp
 
     def set_attack(self, value):
         self.__attack__ = value
 
     def get_attack(self):
         return self.__attack__
+
+    def set_hp(self, value):
+        self.__hp__ = value
+
+    def get_hp(self):
+        return self.__hp__
 
     # Check
     # speed
