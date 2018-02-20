@@ -17,10 +17,11 @@ class Chara(r.Sprite):
     #     self.__stats__ = stats
 
     def __init__(self, name, path):
-        super(r.Sprite, self).__init__()
-        self.Chara = r.Sprite()
-        self.Chara.load_texture(path)
-        self.Chara.scale = (2, 2)
+        super(Chara, self).__init__(0,0)
+        # self.Chara = r.Sprite()
+        self.load_texture(path)
+        self.set_scale(2)
+        # self.Chara.set_scale = (2, 2)
 
         # The x counter states the number of tiles away horizontally the
         # character is from the center tile, and the y counter vertically
@@ -46,8 +47,8 @@ class Chara(r.Sprite):
     def update(self, milliseconds):
 
         # Set the location of the sun and its rays to the current mouse location.
-        self.Chara.coords.X += self.xCounter
-        self.Chara.coords.Y += self.yCounter
+        self.coords.X += self.xCounter
+        self.coords.Y += self.yCounter
 
         # (Optional) Call the update method of the base class (DrawableObj).
         super(r.Sprite, self).update(milliseconds)
