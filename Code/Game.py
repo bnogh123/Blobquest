@@ -9,6 +9,7 @@ class Game:
     engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
     world = engine.get_world()
     world.clear_color = (0, 0, 0)
+    # world.scale = (1, 1)
 
     pc_path = os.path.join("..//pokemon center.png")
     pc = r.Sprite()
@@ -22,6 +23,7 @@ class Game:
     # bulb.load_texture(bulb_path)
     # bulb.scale = (2, 2)
     bulb = Mob.Chara("bulb", bulb_path)
+    bulb.scale_to(r.Vector2(48, 20))
 
     world.add_obj(pc)
     world.add_obj(bulb)

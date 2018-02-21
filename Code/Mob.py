@@ -20,7 +20,7 @@ class Chara(r.Sprite):
         super(Chara, self).__init__(0,0)
         # self.Chara = r.Sprite()
         self.load_texture(path)
-        self.set_scale(2)
+        # self.set_scale(r.Vector2(2, 2))
         # self.Chara.set_scale = (2, 2)
 
         # The x counter states the number of tiles away horizontally the
@@ -32,7 +32,7 @@ class Chara(r.Sprite):
         self.__name__ = name
 
         # This makes a new stat in case stats weren't given
-        new_stat = Stats(0)
+        new_stat = Stats(0, 0)
         self.__stats__ = new_stat
 
     def get_stats(self):
@@ -46,12 +46,11 @@ class Chara(r.Sprite):
 
     def update(self, milliseconds):
 
-        # Set the location of the sun and its rays to the current mouse location.
         self.coords.X += self.xCounter
         self.coords.Y += self.yCounter
 
         # (Optional) Call the update method of the base class (DrawableObj).
-        super(r.Sprite, self).update(milliseconds)
+        super(Chara, self).update(milliseconds)
 
     def up_one(self):
         self.yCounter += 1
@@ -65,12 +64,12 @@ class Chara(r.Sprite):
     def left_one(self):
         self.yCounter -= 1
 
-    def attack(target):
-        if target.get_hp - self.get_attack<0:
-            target.set_hp(0)
-            print ("You win!")
-        else:
-            target.set_hp(target.get_hp - self.get_attack)
+    # def attack(target):
+    #     if target.get_hp - __stats__.get_attack<0:
+    #         target.set_hp(0)
+    #         print ("You win!")
+    #     else:
+    #         target.set_hp(target.get_hp - self.get_attack)
 
 class Stats:
 
