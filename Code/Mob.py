@@ -16,7 +16,9 @@ class Chara(r.Sprite):
     #     self.__name__ = name
     #     self.__stats__ = stats
 
-    def __init__(self, name, path):
+    def __init__(self, name, path, tile_size_x, tile_size_y):
+        self.tile_size_x = tile_size_x
+        self.tile_size_y = tile_size_y
         super(Chara, self).__init__(0,0)
         # self.Chara = r.Sprite()
         self.load_texture(path)
@@ -46,8 +48,8 @@ class Chara(r.Sprite):
 
     def update(self, milliseconds):
 
-        self.coords.X += self.xCounter
-        self.coords.Y += self.yCounter
+        self.coords.X += self.xCounter*self.tile_size_x
+        self.coords.Y += self.yCounter*self.tile_size_y
 
         # (Optional) Call the update method of the base class (DrawableObj).
         super(Chara, self).update(milliseconds)
@@ -70,6 +72,7 @@ class Chara(r.Sprite):
     #         print ("You win!")
     #     else:
     #         target.set_hp(target.get_hp - self.get_attack)
+
 
 class Stats:
 

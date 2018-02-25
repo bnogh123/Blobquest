@@ -1,4 +1,4 @@
-from RagnarokEngine3 import RE3 as r
+# from RagnarokEngine3 import RE3 as r
 import pygame
 from Code import Game as g
 
