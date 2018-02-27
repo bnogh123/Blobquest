@@ -1,32 +1,34 @@
 from RagnarokEngine3 import RE3 as r
 import os
-from Code import Mob
+from Mob import Chara
 import pygame
 
 
 class Game:
-
     engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
     world = engine.get_world()
     world.clear_color = (0, 0, 0)
+
     # world.scale = (1, 1)
 
-    pc_path = os.path.join("..//Sprites2//pokemon center.png")
-    pc = r.Sprite()
-    pc.load_texture(pc_path)
-    scale = world.get_backbuffer_size()
-    pc.scale_to(scale)
+    def __init__(self):
 
-    # pokemon_center = r.TileMap(white.png)
-    bulb_path = os.path.join("..//Sprites2//bulbs-1.png")
-    # bulb = r.Sprite()
-    # bulb.load_texture(bulb_path)
-    # bulb.scale = (2, 2)
-    bulb = Mob.Chara("bulb", bulb_path, 10, 15)
-    bulb.scale_to(r.Vector2(48, 20))
+        pc_path = os.path.join("..//Sprites2//pokemon center.png")
+        pc = r.Sprite()
+        pc.load_texture(pc_path)
+        scale = self.world.get_backbuffer_size()
+        pc.scale_to(scale)
 
-    world.add_obj(pc)
-    world.add_obj(bulb)
+        # pokemon_center = r.TileMap(white.png)
+        bulb_path = os.path.join("..//Sprites2//bulbs-1.png")
+        # bulb = r.Sprite()
+        # bulb.load_texture(bulb_path)
+        # bulb.scale = (2, 2)
+        bulb = Chara("bulb", bulb_path, 10, 15)
+        bulb.scale_to(r.Vector2(48, 20))
+
+        self.world.add_obj(pc)
+        self.world.add_obj(bulb)
 
     def get_engine(self):
         return self.engine

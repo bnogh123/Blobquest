@@ -1,6 +1,6 @@
 # from RagnarokEngine3 import RE3 as r
 import pygame
-from Code import Game as g
+from Code.Game import Game
 
 # if __name__ == '__main__':
 
@@ -8,7 +8,7 @@ from Code import Game as g
 # world = engine.get_world()
 # world.clear_color = (0, 0, 0)
 
-game = g.Game()
+game = Game()
 
 pygame.mouse.set_visible(False)
 game.engine.preferred_fps = 60
