@@ -13,7 +13,7 @@ class Game:
 
     def __init__(self):
 
-        pc_path = os.path.join("..//Sprites2//pokemon center.png")
+        pc_path = os.path.join("..//Sprites2/pokemon center.png")
         pc = r.Sprite()
         pc.load_texture(pc_path)
         scale = self.world.get_backbuffer_size()
@@ -25,7 +25,7 @@ class Game:
         # bulb.load_texture(bulb_path)
         # bulb.scale = (2, 2)
         bulb = Chara("bulb", bulb_path, 10, 15)
-        bulb.scale_to(r.Vector2(48, 20))
+        bulb.scale_to(r.Vector2(48, 40))
 
         self.world.add_obj(pc)
         self.world.add_obj(bulb)

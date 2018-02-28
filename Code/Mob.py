@@ -1,4 +1,6 @@
 from RagnarokEngine3 import RE3 as r
+import os
+import pygame
 
 
 class Chara(r.Sprite):
@@ -47,9 +49,15 @@ class Chara(r.Sprite):
         return self.__name__
 
     def update(self, milliseconds):
+        # Get the location of the mouse.
+        mouse = pygame.mouse.get_pos()
 
-        self.coords.X += self.xCounter*self.tile_size_x
-        self.coords.Y += self.yCounter*self.tile_size_y
+        # Set the location of the sun and its rays to the current mouse location.
+        self.coords.X = mouse[0] - 381
+        self.coords.Y = mouse[1] - 284
+
+        # self.coords.X += self.xCounter*self.tile_size_x
+        # self.coords.Y += self.yCounter*self.tile_size_y
 
         # (Optional) Call the update method of the base class (DrawableObj).
         super(Chara, self).update(milliseconds)
@@ -72,6 +80,7 @@ class Chara(r.Sprite):
     #         print ("You win!")
     #     else:
     #         target.set_hp(target.get_hp - self.get_attack)
+
 
 
 class Stats:
