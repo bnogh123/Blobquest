@@ -24,11 +24,13 @@ class Game:
         # bulb = r.Sprite()
         # bulb.load_texture(bulb_path)
         # bulb.scale = (2, 2)
-        bulb = Chara("bulb", bulb_path, 10, 15)
+        bulb = Chara("bulb", bulb_path, 400, 15)
         bulb.scale_to(r.Vector2(48, 40))
+        moves = KeyboardManager(bulb)
 
         self.world.add_obj(pc)
         self.world.add_obj(bulb)
+        self.world.add_obj(moves)
 
     def get_engine(self):
         return self.engine
@@ -40,16 +42,21 @@ class Game:
         # runs engine, starting the game
         self.engine.run()
 
-    class KeyboardManager(r.UpdatableObj):
 
-        def update(self, milliseconds):
-            if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_LEFT):
-                self.bulb.left_one()
-            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_RIGHT):
-                self.bulb.right_one()
-            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_UP):
-                self.bulb.up_one()
-            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_DOWN):
-                self.bulb.down_one()
+class KeyboardManager(r.UpdatableObj):
+
+    def __init__(self, chara):
+        super(KeyboardManager, self).__init__()
+        self.chara = chara
+
+    def update(self, seconds):
+        if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_LEFT):
+            self.chara.left_one()
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_RIGHT):
+            self.chara.right_one()
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_UP):
+            self.chara.up_one()
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_DOWN):
+            self.chara.down_one()
 
 
