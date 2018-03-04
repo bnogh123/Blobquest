@@ -24,7 +24,7 @@ class Game:
         # bulb = r.Sprite()
         # bulb.load_texture(bulb_path)
         # bulb.scale = (2, 2)
-        bulb = Chara("bulb", bulb_path, 400, 15)
+        bulb = Chara("bulb", bulb_path, 48, 40)
         bulb.scale_to(r.Vector2(48, 40))
         moves = KeyboardManager(bulb)
 
@@ -50,13 +50,13 @@ class KeyboardManager(r.UpdatableObj):
         self.chara = chara
 
     def update(self, seconds):
-        if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_LEFT):
+        if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_a):
             self.chara.left_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_RIGHT):
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_d):
             self.chara.right_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_UP):
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_w):
             self.chara.up_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_DOWN):
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
             self.chara.down_one()
 
 

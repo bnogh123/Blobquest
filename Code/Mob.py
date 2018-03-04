@@ -57,22 +57,24 @@ class Chara(r.Sprite):
         # self.coords.Y = mouse[1] - 284
 
         self.coords.X += self.xCounter*self.tile_size_x
+        self.xCounter = 0
         self.coords.Y += self.yCounter*self.tile_size_y
+        self.yCounter = 0
 
         # (Optional) Call the update method of the base class (DrawableObj).
         super(Chara, self).update(milliseconds)
 
     def up_one(self):
-        self.yCounter += 1
+        self.yCounter -= 1
 
     def down_one(self):
-        self.yCounter -= 1
-
-    def right_one(self):
         self.yCounter += 1
 
+    def right_one(self):
+        self.xCounter += 1
+
     def left_one(self):
-        self.yCounter -= 1
+        self.xCounter -= 1
 
     # def attack(target):
     #     if target.get_hp - __stats__.get_attack<0:
