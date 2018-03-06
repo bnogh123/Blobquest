@@ -1,4 +1,6 @@
 from RagnarokEngine3 import RE3 as r
+import os
+import pygame
 
 
 class Chara(r.Sprite):
@@ -19,7 +21,7 @@ class Chara(r.Sprite):
     def __init__(self, name, path, tile_size_x, tile_size_y):
         self.tile_size_x = tile_size_x
         self.tile_size_y = tile_size_y
-        super(Chara, self).__init__(0,0)
+        super(Chara, self).__init__(0, 0)
         # self.Chara = r.Sprite()
         self.load_texture(path)
         # self.set_scale(r.Vector2(2, 2))
@@ -47,24 +49,32 @@ class Chara(r.Sprite):
         return self.__name__
 
     def update(self, milliseconds):
+        # # Get the location of the mouse.
+        # mouse = pygame.mouse.get_pos()
+        #
+        # # Set the location of the sun and its rays to the current mouse location.
+        # self.coords.X = mouse[0] - 381
+        # self.coords.Y = mouse[1] - 284
 
         self.coords.X += self.xCounter*self.tile_size_x
+        self.xCounter = 0
         self.coords.Y += self.yCounter*self.tile_size_y
+        self.yCounter = 0
 
         # (Optional) Call the update method of the base class (DrawableObj).
         super(Chara, self).update(milliseconds)
 
     def up_one(self):
-        self.yCounter += 1
+        self.yCounter -= 1
 
     def down_one(self):
-        self.yCounter -= 1
-
-    def right_one(self):
         self.yCounter += 1
 
+    def right_one(self):
+        self.xCounter += 1
+
     def left_one(self):
-        self.yCounter -= 1
+        self.xCounter -= 1
 
     # def attack(target):
     #     if target.get_hp - __stats__.get_attack<0:
