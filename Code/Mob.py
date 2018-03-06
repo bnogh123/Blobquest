@@ -83,6 +83,78 @@ class Chara(r.Sprite):
     #     else:
     #         target.set_hp(target.get_hp - self.get_attack)
 
+class Enemy(r.Sprite):
+
+    # def __init__(self,  stats, name, path):
+    #     super(Chara, self).__init__()
+    #     self.Chara = r.Sprite()
+    #     self.Chara.load_texture(path)
+    #     self.Chara.scale = (2, 2)
+    #
+    #     # The x counter states the number of tiles away horizontally the
+    #     # character is from the center tile, and the y counter vertically
+    #     self.xCounter = 0
+    #     self.yCounter = 0
+    #     self.__name__ = name
+    #     self.__stats__ = stats
+
+    def __init__(self, name, path, tile_size_x, tile_size_y):
+        self.tile_size_x = tile_size_x
+        self.tile_size_y = tile_size_y
+        super(Chara, self).__init__(0, 0)
+        # self.Chara = r.Sprite()
+        self.load_texture(path)
+        # self.set_scale(r.Vector2(2, 2))
+        # self.Chara.set_scale = (2, 2)
+
+        # The x counter states the number of tiles away horizontally the
+        # character is from the center tile, and the y counter vertically
+        self.xCounter = 0
+        self.yCounter = 0
+
+        # This defines the name of the character
+        self.__name__ = name
+
+        # This makes a new stat in case stats weren't given
+        new_stat = Stats(0, 0)
+        self.__stats__ = new_stat
+
+    def get_stats(self):
+        return self.__stats__
+
+    def set_stats(self, stats):
+        self.__stats__ = stats
+
+    def get_name(self):
+        return self.__name__
+
+    def update(self, milliseconds):
+        # # Get the location of the mouse.
+        # mouse = pygame.mouse.get_pos()
+        #
+        # # Set the location of the sun and its rays to the current mouse location.
+        # self.coords.X = mouse[0] - 381
+        # self.coords.Y = mouse[1] - 284
+
+        self.coords.X += self.xCounter*self.tile_size_x
+        self.xCounter = 0
+        self.coords.Y += self.yCounter*self.tile_size_y
+        self.yCounter = 0
+
+        # (Optional) Call the update method of the base class (DrawableObj).
+        super(Chara, self).update(milliseconds)
+
+    def up_one(self):
+        self.yCounter -= 1
+
+    def down_one(self):
+        self.yCounter += 1
+
+    def right_one(self):
+        self.xCounter += 1
+
+    def left_one(self):
+        self.xCounter -= 1
 
 class Stats:
 
