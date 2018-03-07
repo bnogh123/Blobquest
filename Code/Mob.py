@@ -101,7 +101,7 @@ class Enemy(r.Sprite):
     def __init__(self, name, path, tile_size_x, tile_size_y):
         self.tile_size_x = tile_size_x
         self.tile_size_y = tile_size_y
-        super(Chara, self).__init__(0, 0)
+        super(Enemy, self).__init__(0, 0)
         # self.Chara = r.Sprite()
         self.load_texture(path)
         # self.set_scale(r.Vector2(2, 2))
@@ -142,7 +142,7 @@ class Enemy(r.Sprite):
         self.yCounter = 0
 
         # (Optional) Call the update method of the base class (DrawableObj).
-        super(Chara, self).update(milliseconds)
+        super(Enemy, self).update(milliseconds)
 
     def up_one(self):
         self.yCounter -= 1

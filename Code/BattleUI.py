@@ -14,10 +14,10 @@ class BattleUI(r.GUIMenu):
     guard = GUIButton(self)
 
     def clicked_action (selected):
-    if mc.get_attack>slime.get_hp:
-        slime.set_hp(self, 0)
-    else:
-        slime.set_hp(self, slime.get_hp-mc.get_attack)
+        if mc.get_attack>slime.get_hp:
+            slime.set_hp(self, 0)
+        else:
+            slime.set_hp(self, slime.get_hp-mc.get_attack)
 
     # if function to detect which button and use different functions for each?
     # In the future remove the self in the  parameter and replace with an actual texture
