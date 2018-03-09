@@ -82,3 +82,9 @@ class KeyboardManager(r.UpdatableObj):
             self.chara.down_one()
 
 
+# Change battle state to true
+#Change background fo world
+#disable moving
+#move character to right and add enemy to left
+#display health and mana bars mebbe
+#Show the fight button
