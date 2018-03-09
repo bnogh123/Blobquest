@@ -3,17 +3,12 @@ import os
 import pygame
 
 
-class BattleUI(r.GUIMenu):
+class BattleUI(r.GUIButton):
 
     def __init__(self):
-        set_keyboard_focus(self)
+        super_init_(self)
 
-    fight = GUIButton(self)
-    run = GUIButton(self)
-    item = GUIButton(self)
-    guard = GUIButton(self)
-
-    def clicked_action (selected):
+    def clicked_action (self):
         if mc.get_attack>slime.get_hp:
             slime.set_hp(self, 0)
         else:
