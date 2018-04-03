@@ -1,33 +1,71 @@
-from RagnarokEngine3 import RE3 as r
 import os
 from Mob import Chara
+import RE3 as r
 import pygame
 
 
 class Game:
-    engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
-    world = engine.get_world()
-    world.clear_color = (0, 0, 0)
-
-    # world.scale = (1, 1)
 
     def __init__(self):
+        engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
+        world = engine.get_world()
+        world.clear_color = (0, 0, 0)
 
         pc_path = os.path.join("..//Sprites2/pokemon center.png")
         pc = r.Sprite()
         pc.load_texture(pc_path)
-        scale = self.world.get_backbuffer_size()
+        scale = world.get_backbuffer_size()
         pc.scale_to(scale)
 
         bulb_path = os.path.join("..//Sprites2//bulbs-1.png")
-        # bulb = r.Sprite()
-        # bulb.load_texture(bulb_path)
-        # bulb.scale = (2, 2)
         bulb = Chara("bulb", bulb_path, 48, 40)
         bulb.scale_to(r.Vector2(48, 40))
         moves = KeyboardManager(bulb)
 
-        # nurse_joy = r.TileMapManager()
+        items = [pc, bulb]
+        change_mode(world, items)
+
+    def get_engine(self):
+        return self.engine
+
+    def get_world(self):
+        return self.world
+
+    def run_game(self):
+        # runs engine, starting the game
+        self.engine.run()
+
+    def change_mode(self, world, items):
+        for i, index in items:
+            self.world.add_obj(items[index])
+
+
+class ScreenManager(r.UpdatableObj):
+
+    def __init__(self, world, items):
+        super(ScreenManager, self).__init__()
+        self.world = world
+        self.items = items
+
+
+    # def update(self, milliseconds):
+class KeyboardManager(r.UpdatableObj):
+
+    def __init__(self, chara):
+        super(KeyboardManager, self).__init__()
+        self.chara = chara
+
+    def update(self, milliseconds):
+        if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_a):
+            self.chara.left_one()
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_d):
+            self.chara.right_one()
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_w):
+            self.chara.up_one()
+        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
+            self.chara.down_one()
+
+# nurse_joy = r.TileMapManager()
         #
         # # The Collision map
         # collisions = {}
@@ -49,42 +87,9 @@ class Game:
         # nurse_joy.add_map(pokemon_center)
         # nurse_joy.load(pokemon_center)
 
-        self.world.add_obj(pc)
-        self.world.add_obj(bulb)
-        self.world.add_obj(moves)
-        # self.world.add_obj(nurse_joy)
-
-    def get_engine(self):
-        return self.engine
-
-    def get_world(self):
-        return self.world
-
-    def run_game(self):
-        # runs engine, starting the game
-        self.engine.run()
-
-
-class KeyboardManager(r.UpdatableObj):
-
-    def __init__(self, chara):
-        super(KeyboardManager, self).__init__()
-        self.chara = chara
-
-    def update(self, seconds):
-        if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_a):
-            self.chara.left_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_d):
-            self.chara.right_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_w):
-            self.chara.up_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
-            self.chara.down_one()
-
-
 # Change battle state to true
-#Change background fo world
-#disable moving
-#move character to right and add enemy to left
-#display health and mana bars mebbe
-#Show the fight button
+# Change background fo world
+# disable moving
+# move character to right and add enemy to left
+# display health and mana bars mebbe
+# Show the fight button
