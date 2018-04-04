@@ -22,8 +22,8 @@ class Game:
         bulb.scale_to(r.Vector2(48, 40))
         moves = KeyboardManager(bulb)
 
-        items = [pc, bulb]
-        change_mode(world, items)
+        items = ['pc', 'bulb']
+        self.change_mode(world, items)
 
     def get_engine(self):
         return self.engine
@@ -36,8 +36,8 @@ class Game:
         self.engine.run()
 
     def change_mode(self, world, items):
-        for i, index in items:
-            self.world.add_obj(items[index])
+        for items_index in items:
+            world.add_obj(items[index])
 
 
 class ScreenManager(r.UpdatableObj):
@@ -46,9 +46,9 @@ class ScreenManager(r.UpdatableObj):
         super(ScreenManager, self).__init__()
         self.world = world
         self.items = items
-
-
     # def update(self, milliseconds):
+
+
 class KeyboardManager(r.UpdatableObj):
 
     def __init__(self, chara):
