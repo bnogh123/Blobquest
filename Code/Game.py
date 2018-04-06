@@ -5,16 +5,15 @@ import pygame
 
 
 class Game:
+    engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
+    world = engine.get_world()
+    world.clear_color = (0, 0, 0)
 
     def __init__(self):
-        engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
-        world = engine.get_world()
-        world.clear_color = (0, 0, 0)
-
         pc_path = os.path.join("..//Sprites2/pokemon center.png")
         pc = r.Sprite()
         pc.load_texture(pc_path)
-        scale = world.get_backbuffer_size()
+        scale = self.world.get_backbuffer_size()
         pc.scale_to(scale)
 
         bulb_path = os.path.join("..//Sprites2//bulbs-1.png")
@@ -22,8 +21,28 @@ class Game:
         bulb.scale_to(r.Vector2(48, 40))
         moves = KeyboardManager(bulb)
 
-        items = ['pc', 'bulb']
-        self.change_mode(world, items)
+        items = [pc, bulb, moves]
+        self.change_mode(items)
+
+        # # The Collision map
+        # collisions = {}
+        # collisions["0"] = ["Passthrough"]
+        # collisions["1"] = ["Solid"]
+        #
+        # # The actual creatin of the things for the tilemap
+        # object_ary = {}
+        # prefix = "..//Start//"
+        # ppath = os.path.join("..//Sprites2//Yeee.png")
+        # tile_path = prefix + "TileMap.txt"
+        # collision_map = prefix + "CollisionMap.txt"
+        # object_map = prefix + "ObjectMap.txt"
+        # data_path = prefix + "//Data.txt"
+        # dta = "Yeee.png"
+        # tile_map = r.SpriteSheet()
+        # tile_map.load_texture("..//Sprites2//" + dta, cell_size=r.Vector2(48, 40))
+        # pokemon_center = r.TileMap(tile_map, collisions, tile_path, collision_map, object_map, object_ary, "bulb")
+        # self.world.TileMapMgr.add_map(pokemon_center)
+        # self.world.TileMapMgr.load(pokemon_center)
 
     def get_engine(self):
         return self.engine
@@ -35,9 +54,10 @@ class Game:
         # runs engine, starting the game
         self.engine.run()
 
-    def change_mode(self, world, items):
-        for items_index in items:
-            world.add_obj(items[index])
+    # items is just the array of objects to be added
+    def change_mode(self, items):
+        for item in items:
+            self.world.add_obj(item)
 
 
 class ScreenManager(r.UpdatableObj):
@@ -65,27 +85,6 @@ class KeyboardManager(r.UpdatableObj):
         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
             self.chara.down_one()
 
-# nurse_joy = r.TileMapManager()
-        #
-        # # The Collision map
-        # collisions = {}
-        # collisions["0"] = ["Passthrough"]
-        # collisions["1"] = ["Solid"]
-        #
-        # # The actual creatin of the things for the tilemap
-        # object_ary = {}
-        # prefix = "..//Start//"
-        # ppath = os.path.join("..//Sprites2//Yeee.png")
-        # tile_path = prefix + "TileMap.txt"
-        # collision_map = prefix + "CollisionMap.txt"
-        # object_map = prefix + "ObjectMap.txt"
-        # data_path = prefix + "//Data.txt"
-        # dta = "Yeee.png"
-        # tile_map = r.SpriteSheet()
-        # tile_map.load_texture("..//Sprites2//" + dta, cell_size=r.Vector2(48, 40))
-        # pokemon_center = r.TileMap(tile_map, collisions, tile_path, collision_map, object_map, object_ary, "bulb")
-        # nurse_joy.add_map(pokemon_center)
-        # nurse_joy.load(pokemon_center)
 
 # Change battle state to true
 # Change background fo world
