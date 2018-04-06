@@ -5,13 +5,13 @@ import RE3 as r
 
 class BattleUI(r.GUIMenu):
 
-    def __init__(self, allies, monsters):
+    def __init__(self, team, monsters):
         super._init_(self)
-        self.allies = allies
+        self.team = team
         self.monsters = monsters
         turn = 0
 
-    selected="fight"
+    selected = "fight"
 
     def button_type(self):
         if self.current_index == 0:
