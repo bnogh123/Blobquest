@@ -8,7 +8,7 @@ class Game:
     engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
     world = engine.get_world()
     world.clear_color = (0, 0, 0)
-
+    battle=false
     def __init__(self):
         pc_path = os.path.join("..//Sprites2/pokemon center.png")
         pc = r.Sprite()
@@ -84,7 +84,8 @@ class KeyboardManager(r.UpdatableObj):
             self.chara.up_one()
         elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
             self.chara.down_one()
-
+        if battle==true:
+            # I don't know the code for showing stuff but that for all three buttons and another if to see which one is selected.
 
 # Change battle state to true
 # Change background fo world

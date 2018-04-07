@@ -10,8 +10,19 @@ class BattleUI(r.GUIMenu):
         self.team = team
         self.monsters = monsters
         turn = 0
-
-    selected = "fight"
+        selected = "fight"
+        fight_path = os.path.join"..//Sprites2/button.png"
+        item_path = os.path.join"..//Sprites2/button.png"
+        run_path = os.path.join"..//Sprites2/button.png"
+        fight_text = Text()
+        item_text = Text()
+        run_text = Text()
+        fight_text._set_text(self,"FIGHT")
+        item_text._set_text(self, "ITEM")
+        run_text._set_text(self, "RUN")
+        self.insert(fight_path,0)
+        self.insert(item_path, 1)
+        self.insert(run_path, 2)
 
     def button_type(self):
         if self.current_index == 0:
@@ -20,6 +31,7 @@ class BattleUI(r.GUIMenu):
             selected = "items"
         elif self.current_index == 2:
             selected = "run"
+        return selected
 
     def clicked_action(self, selected):
         if selected == "fight":
