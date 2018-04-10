@@ -1,4 +1,5 @@
 import os
+import random
 from Mob import Chara
 import RE3 as r
 import pygame
@@ -8,7 +9,7 @@ class Game:
     engine = r.Ragnarok(r.Vector2(762, 567), "BLOBQUEST")
     world = engine.get_world()
     world.clear_color = (0, 0, 0)
-    battle=false
+
     def __init__(self):
         pc_path = os.path.join("..//Sprites2/pokemon center.png")
         pc = r.Sprite()
@@ -19,10 +20,10 @@ class Game:
         bulb_path = os.path.join("..//Sprites2//bulbs-1.png")
         bulb = Chara("bulb", bulb_path, 48, 40)
         bulb.scale_to(r.Vector2(48, 40))
-        moves = KeyboardManager(bulb)
-
-        items = [pc, bulb, moves]
-        self.change_mode(items)
+        world_obj = [pc, bulb]
+        moves = StateManager(self.world, world_obj)
+        self.world.add_obj(moves)
+        moves.back_to_overworld()
 
         # # The Collision map
         # collisions = {}
@@ -66,20 +67,20 @@ class Game:
         self.engine.run()
 
     # items is just the array of objects to be added
-    def change_mode(self, items):
-        for item in items:
-            self.world.add_obj(item)
 
 
-class ScreenManager(r.UpdatableObj):
+class StateManager(r.UpdatableObj):
 
-    def __init__(self, world, items):
-        super(ScreenManager, self).__init__()
+    def __init__(self, world, world_obj):
+        super(StateManager, self).__init__()
         self.world = world
-        self.items = items
-    # def update(self, milliseconds):
+        self.chara = world_obj[0]
+        self.battle = False
+        self.world_obj = world_obj
+        # self.team = team
+        self.current_set = world_obj
 
-
+<<<<<<< HEAD
     class KeyboardManager(r.UpdatableObj):
 
         def __init__(self, chara):
@@ -116,6 +117,46 @@ class ScreenManager(r.UpdatableObj):
             self.chara.down_one()
         if battle==true:
             # I don't know the code for showing stuff but that for all three buttons and another if to see which one is selected.
+=======
+    def update(self, milliseconds):
+        counter = 0
+        if self.battle != True:
+            if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_a):
+                self.chara.left_one()
+            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_d):
+                self.chara.right_one()
+            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_w):
+                self.chara.up_one()
+            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
+                self.chara.down_one()
+            if random.random() < 0.3:
+                self.battle = True
+
+    # def start_battle(self):
+    #     change_mode(battle_obj)
+
+    def back_to_overworld(self):
+        self.remove_set()
+        self.add_set(self.world_obj)
+
+    def remove_set(self):
+        if self.current_set != None:
+            for item in self.current_set:
+                self.world.remove_obj(item)
+            self.current_set = None
+        else:
+            return
+
+    def add_set(self, items):
+        for item in items:
+            self.world.add_obj(item)
+        self.current_set = items
+
+
+        # I don't know the code for showing stuff but that for all
+        # three buttons and another if to see which one is selected.
+        # if battle==true:
+>>>>>>> 8b9e0d3c58c235dd01de82385c6c6cf17635a7e9
 
 # Change battle state to true
 # Change background fo world
@@ -123,4 +164,7 @@ class ScreenManager(r.UpdatableObj):
 # move character to right and add enemy to left
 # display health and mana bars mebbe
 # Show the fight button
+<<<<<<< HEAD
 >>>>>>> 0933c68a7edfd784dd69827721faea561ebd6ad5
+=======
+>>>>>>> 8b9e0d3c58c235dd01de82385c6c6cf17635a7e9
