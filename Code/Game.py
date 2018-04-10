@@ -49,9 +49,10 @@ class Game:
         # nurse_joy.add_map(pokemon_center)
         # nurse_joy.load(pokemon_center)
 
-        self.world.add_obj(pc)
-        self.world.add_obj(bulb)
-        self.world.add_obj(moves)
+    def begin_game(self):
+        self.world.add_obj(self.pc)
+        self.world.add_obj(self.bulb)
+        self.world.add_obj(self.moves)
         # self.world.add_obj(nurse_joy)
 
     def get_engine(self):
@@ -65,26 +66,26 @@ class Game:
         self.engine.run()
 
 
-class KeyboardManager(r.UpdatableObj):
+    class KeyboardManager(r.UpdatableObj):
 
-    def __init__(self, chara):
-        super(KeyboardManager, self).__init__()
-        self.chara = chara
+        def __init__(self, chara):
+            super(KeyboardManager, self).__init__()
+            self.chara = chara
 
-    def update(self, seconds):
-        if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_a):
-            self.chara.left_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_d):
-            self.chara.right_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_w):
-            self.chara.up_one()
-        elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
-            self.chara.down_one()
+        def update(self, seconds):
+            if r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_a):
+                self.chara.left_one()
+            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_d):
+                self.chara.right_one()
+            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_w):
+                self.chara.up_one()
+            elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
+                self.chara.down_one()
 
 
-# Change battle state to true
-#Change background fo world
-#disable moving
-#move character to right and add enemy to left
-#display health and mana bars mebbe
-#Show the fight button
+    # Change battle state to true
+    #Change background fo world
+    #disable moving
+    #move character to right and add enemy to left
+    #display health and mana bars mebbe
+    #Show the fight button
