@@ -21,7 +21,7 @@ class Game:
         bulb = Chara("bulb", bulb_path, 48, 40)
         bulb.scale_to(r.Vector2(48, 40))
         world_obj = [pc, bulb]
-        moves = KeyboardManager(self.world, world_obj)
+        moves = StateManager(self.world, world_obj)
         self.world.add_obj(moves)
         moves.back_to_overworld()
 
@@ -58,10 +58,10 @@ class Game:
     # items is just the array of objects to be added
 
 
-class KeyboardManager(r.UpdatableObj):
+class StateManager(r.UpdatableObj):
 
     def __init__(self, world, world_obj):
-        super(KeyboardManager, self).__init__()
+        super(StateManager, self).__init__()
         self.world = world
         self.chara = world_obj[0]
         self.battle = False
@@ -80,8 +80,8 @@ class KeyboardManager(r.UpdatableObj):
                 self.chara.up_one()
             elif r.Ragnarok.get_world().Keyboard.is_clicked(pygame.K_s):
                 self.chara.down_one()
-            if random() < 0.3:
-                self.battle = true
+            if random.random() < 0.3:
+                self.battle = True
 
     # def start_battle(self):
     #     change_mode(battle_obj)
