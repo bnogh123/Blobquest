@@ -1,6 +1,6 @@
+from RagnarokEngine3 import RE3 as r
 import os
 import pygame
-import RE3 as r
 
 
 class Chara(r.Sprite):

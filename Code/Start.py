@@ -11,7 +11,7 @@ import Game
 game = Game.Game()
 
 pygame.mouse.set_visible(False)
-game.get_engine().preferred_fps = 60
-game.get_engine().print_frames = False
+game.engine.preferred_fps = 60
+game.engine.print_frames = False
 
 game.run_game()
