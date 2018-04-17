@@ -51,14 +51,14 @@ class Tile(object):
     def __repr__(self):
         return '<Tile %d>' % self.gid
 
-    class Tileset(object):
-        def __init__(self, name, tile_width, tile_height, firstgid):
-            self.name = name
-            self.tile_width = tile_width
-            self.tile_height = tile_height
-            self.firstgid = firstgid
-            self.tiles = []
-            self.properties = {}
+class Tileset(object):
+    def __init__(self, name, tile_width, tile_height, firstgid):
+        self.name = name
+        self.tile_width = tile_width
+        self.tile_height = tile_height
+        self.firstgid = firstgid
+        self.tiles = []
+        self.properties = {}
 
     @classmethod
     def fromxml(cls, tag, firstgid=None):
@@ -100,63 +100,63 @@ class Tile(object):
     def get_tile(self, gid):
         return self.tiles[gid - self.firstgid]
 
-    class Tilesets(dict):
-        def add(self, tileset):
-            for i, tile in enumerate(tileset.tiles):
-                i += tileset.firstgid
-                self[i] = tile
+class Tilesets(dict):
+    def add(self, tileset):
+        for i, tile in enumerate(tileset.tiles):
+            i += tileset.firstgid
+            self[i] = tile
 
-    class Cell(object):
-        def __init__(self, x, y, px, py, tile):
-            self.x, self.y = x, y
-            self.px, self.py = px, py
-            self.tile = tile
-            self.topleft = (px, py)
-            self.left = px
-            self.right = px + tile.tile_width
-            self.top = py
-            self.bottom = py + tile.tile_height
-            self.center = (px + tile.tile_width // 2,
-                           py + tile.tile_height // 2)
-            self._added_properties = {}
-            self._deleted_properties = set()
+class Cell(object):
+    def __init__(self, x, y, px, py, tile):
+        self.x, self.y = x, y
+        self.px, self.py = px, py
+        self.tile = tile
+        self.topleft = (px, py)
+        self.left = px
+        self.right = px + tile.tile_width
+        self.top = py
+        self.bottom = py + tile.tile_height
+        self.center = (px + tile.tile_width // 2,
+                       py + tile.tile_height // 2)
+        self._added_properties = {}
+        self._deleted_properties = set()
 
-        def __repr__(self):
-            return '<Cell %s,%s %d>' % (self.px, self.py, self.tile.gid)
+    def __repr__(self):
+        return '<Cell %s,%s %d>' % (self.px, self.py, self.tile.gid)
 
-        def __contains__(self, key):
-            if key in self._deleted_properties:
-                return False
-            return key in self._added_properties or key in self.tile.properties
+    def __contains__(self, key):
+        if key in self._deleted_properties:
+            return False
+        return key in self._added_properties or key in self.tile.properties
 
-        def __getitem__(self, key):
-            if key in self._deleted_properties:
-                raise KeyError(key)
-            if key in self._added_properties:
-                return self._added_properties[key]
-            if key in self.tile.properties:
-                return self.tile.properties[key]
+    def __getitem__(self, key):
+        if key in self._deleted_properties:
             raise KeyError(key)
+        if key in self._added_properties:
+            return self._added_properties[key]
+        if key in self.tile.properties:
+            return self.tile.properties[key]
+        raise KeyError(key)
 
-        def __setitem__(self, key, value):
-            self._added_properties[key] = value
+    def __setitem__(self, key, value):
+        self._added_properties[key] = value
 
-        def __delitem__(self, key):
-            self._deleted_properties.add(key)
+    def __delitem__(self, key):
+        self._deleted_properties.add(key)
 
-        def intersects(self, other):
-            '''Determine whether this Cell intersects with the other rect (which has
-            .x, .y, .width and .height attributes.)
-            '''
-            if self.px + self.tile.tile_width < other.x:
-                return False
-            if other.x + other.width - 1 < self.px:
-                return False
-            if self.py + self.tile.tile_height < other.y:
-                return False
-            if other.y + other.height - 1 < self.py:
-                return False
-            return True
+    def intersects(self, other):
+        '''Determine whether this Cell intersects with the other rect (which has
+        .x, .y, .width and .height attributes.)
+        '''
+        if self.px + self.tile.tile_width < other.x:
+            return False
+        if other.x + other.width - 1 < self.px:
+            return False
+        if self.py + self.tile.tile_height < other.y:
+            return False
+        if other.y + other.height - 1 < self.py:
+            return False
+        return True
 
 
 class LayerIterator(object):
