@@ -13,8 +13,8 @@ class BattleUI(object):
         self.attacked = None
         self.paths = [3]
         self.paths[0] = os.path.join("..//Sprites2/button.png")
-        self.paths[0] = os.path.join("..//Sprites2/button.png")
-        self.paths[0] = os.path.join("..//Sprites2/button.png")
+        self.paths[1] = os.path.join("..//Sprites2/button.png")
+        self.paths[2] = os.path.join("..//Sprites2/button.png")
         self.fight_text = pygame.Text()
         self.item_text = pygame.Text()
         self.run_text = pygame.Text()
