@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
- <layer name="Tile Layer 1" width="15" height="10">
+ <tileset firstgid="1" name="scifitiles-sheet" tilewidth="16" tileheight="16" tilecount="336" columns="28">
+  <image source="../Tilesheets/scifitiles-sheet.png" width="448" height="192"/>
+ </tileset>
+ <layer name="background" width="15" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzjZmBg4ANiXiJpfiAWAGIbII4H4iQgTiRAawKxFhBrA7EOVK8zELsBsSsJtAeJ9iLTKVSwdzIQTyHT3vVAvIFMe08D8RkgngnEs5DouUA8D4s4iJ4DxBFAbAvEdlhoZiBmwSMfDcSRQByFhZYHYgUc8jA2AFa6L2E=
+  </data>
+ </layer>
+ <layer name="foreground" width="15" height="10" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzdz8sNQFAQheG59ihIIary3Lk04NmFZx/U4V/YES5LJ/lyksnMYkS+J0CICDESpBd7GTRyFMesRIUaDVp0WLE9dI8BIybMWKCUiKXu2zQ2HLjwzM9O//ovb/+SHRwwGSs=
+  </data>
+ </layer>
+ <layer name="triggers" width="15" height="10">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo4D6AAACWAAB
   </data>

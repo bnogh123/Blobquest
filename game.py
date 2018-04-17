@@ -1,6 +1,6 @@
 import pygame
 import tmx
-from Mobs import Player
+from mobs import *
 
 
 class SpriteLoop(pygame.sprite.Sprite):

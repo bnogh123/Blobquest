@@ -544,7 +544,7 @@ class ObjectLayer(object):
         if not self.visible:
             return
         ox, oy = self.position
-        w, h = self.view_w, self.view_h
+        # w, h = self.view_w, self.view_h
         for object in self.objects:
             object.draw(surface, self.view_x, self.view_y)
 
@@ -620,7 +620,7 @@ class SpriteLayer(pygame.sprite.AbstractGroup):
 
     def draw(self, screen):
         ox, oy = self.position
-        w, h = self.view_w, self.view_h
+        # w, h = self.view_w, self.view_h
 
         for sprite in self.sprites():
             sx, sy = sprite.rect.topleft
@@ -669,9 +669,8 @@ class TileMap(object):
         fx, fy - viewport focus point
         view_w, view_h - viewport size
         view_x, view_y - viewport offset (origin)
-        viewport - a Rect instance giving the current viewport specification
+        viewport - a Rect instance giving the current viewport specification'''
 
-    '''
     def __init__(self, size, origin=(0, 0)):
         self.px_width = 0
         self.px_height = 0
