@@ -3,9 +3,9 @@ import pygame
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, image, location, orientation, *groups):
+    def __init__(self, location, orientation, *groups):
         super(Player, self).__init__(*groups)
-        self.image = image
+        self.image = pygame.image.load('sprites/nora01.png')
         self.imageDefault = self.image.copy()
         self.rect = pygame.Rect(location, (64, 64))
         self.orient = orientation
@@ -22,13 +22,13 @@ class Player(pygame.sprite.Sprite):
         # and scrolls it to the necessary position for the current orientation
         self.image = self.imageDefault.copy()
         if self.orient == 'up':
-            self.image.scroll(0, -64)
+            self.image.scroll(0, -16)
         elif self.orient == 'down':
             self.image.scroll(0, 0)
         elif self.orient == 'left':
-            self.image.scroll(0, -128)
+            self.image.scroll(0, -32)
         elif self.orient == 'right':
-            self.image.scroll(0, -192)
+            self.image.scroll(0, -48)
 
     def update(self, dt, game):
         key = pygame.key.get_pressed()
@@ -65,11 +65,11 @@ class Player(pygame.sprite.Sprite):
             self.walking = True
         lastRect = self.rect.copy()
         # Walking at 8 pixels per frame in the direction the player is facing
-        if self.walking and self.dx < 64:
+        if self.walking and self.dx < 32:
             if self.orient == 'up':
-                self.rect.y -= 8
+                self.rect.y -= 4
             elif self.orient == 'down':
-                self.rect.y += 8
+                self.rect.y += 4
             elif self.orient == 'left':
                 self.rect.x -= 8
             elif self.orient == 'right':
@@ -90,16 +90,16 @@ class Player(pygame.sprite.Sprite):
 
             return
         # Switch to the walking sprite after 32 pixels
-        if self.dx == 32:
-            # Self.step keeps track of when to flip the sprite so that
-            # the character appears to be taking steps with different feet.
-            if (self.orient == 'up' or
-                    self.orient == 'down') and self.step == 'leftFoot':
-                self.image = pygame.transform.flip(self.image, True, False)
-                self.step = 'rightFoot'
-            else:
-                self.image.scroll(-64, 0)
-                self.step = 'leftFoot'
+        # if self.dx == 32:
+            # # Self.step keeps track of when to flip the sprite so that
+            # # the character appears to be taking steps with different feet.
+            # if (self.orient == 'up' or
+            #         self.orient == 'down') and self.step == 'leftFoot':
+            #     self.image = pygame.transform.flip(self.image, True, False)
+            #     self.step = 'rightFoot'
+            # else:
+            #     self.image.scroll(-64, 0)
+            #     self.step = 'leftFoot'
         # After traversing 64 pixels, the walking animation is done
         if self.dx == 64:
             self.walking = False
@@ -114,6 +114,45 @@ class Player(pygame.sprite.Sprite):
     #         print ("You win!")
     #     else:
     #         target.set_hp(target.get_hp - self.get_attack)
+
+
+class SpriteLoop(pygame.sprite.Sprite):
+    """A simple looped animated sprite.
+
+    SpriteLoops require certain properties to be defined in the relevant
+    tmx tile:
+
+    src - the source of the image that contains the sprites
+    width, height - the width and height of each section of the sprite that
+        will be displayed on-screen during animation
+    mspf - milliseconds per frame, or how many milliseconds must pass to
+        advance onto the next frame in the sprite's animation
+    frames - the number individual frames that compose the animation
+    """
+
+    def __init__(self, location, cell, *groups):
+        super(SpriteLoop, self).__init__(*groups)
+        self.image = pygame.image.load(cell['src'])
+        self.defaultImage = self.image.copy()
+        self.width = int(cell['width'])
+        self.height = int(cell['height'])
+        self.rect = pygame.Rect(location, (self.width, self.height))
+        self.frames = int(cell['frames'])
+        self.frameCount = 0
+        self.mspf = int(cell['mspf'])  # milliseconds per frame
+        self.timeCount = 0
+
+    def update(self, dt, game):
+        self.timeCount += dt
+        if self.timeCount > self.mspf:
+            # Advance animation to the appropriate frame
+            self.image = self.defaultImage.copy()
+            self.image.scroll(-1 * self.width * self.frameCount, 0)
+            self.timeCount = 0
+
+            self.frameCount += 1
+            if self.frameCount == self.frames:
+                self.frameCount = 0
 
 
 class Stats:
