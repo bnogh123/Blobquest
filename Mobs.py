@@ -168,7 +168,7 @@ class SpriteLoop(pygame.sprite.Sprite):
         if self.timeCount > self.mspf:
             # Advance animation to the appropriate frame
             self.image = self.defaultImage.copy()
-            self.image.scroll(-1 * self.width * self.frameCount, 0)
+            # self.image.scroll(-1 * self.width * self.frameCount, 0)
             self.timeCount = 0
 
             self.frameCount += 1
