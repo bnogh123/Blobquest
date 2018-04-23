@@ -1,6 +1,29 @@
 # import os
 import pygame
 
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, location, orienation, *groups):
+        super(Enemy, self).__init__(*groups)
+        self.ijmage = pygame.image.load('sprites/enemy.png')
+        #set the actual path to the enemy png
+        self.imageDefault = self.image.copy()
+        self.rect = pygame.Rect(location, (64, 64))
+        self.orient = orientation
+        self.stats = Stats(1,1)
+        self.setSprite()
+
+    def setSprite(self):
+        # Basically the same as for the player, but numbers need to be adjusted to account for different character
+        self.image = self.imageDefault.copy()
+        if self.orient == 'up':
+            self.image.scroll(0, -16)
+        elif self.orient == 'down':
+            self.image.scroll(0, 0)
+        elif self.orient == 'left':
+            self.image.scroll(0, -32)
+        elif self.orient == 'right':
+            self.image.scroll(0, -48)
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, location, orientation, size, *groups):
