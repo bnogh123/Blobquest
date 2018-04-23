@@ -39,10 +39,10 @@ class Game(object):
             self.tilemap.layers.append(self.objects)
         # Initializing player sprite
         startCell = self.tilemap.layers['triggers'].find('playerStart')[0]
-        self.player = Player((startCell.px, startCell.py),
-                             startCell['playerStart'], self.players)
+        self.nora = Player((startCell.px, startCell.py),
+                           startCell['playerStart'], [32, 40], self.players,)
         self.tilemap.layers.append(self.players)
-        self.tilemap.set_focus(self.player.rect.x, self.player.rect.y)
+        self.tilemap.set_focus(self.nora.rect.x, self.nora.rect.y)
 
     def main(self):
         clock = pygame.time.Clock()
@@ -65,6 +65,6 @@ class Game(object):
 
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode((640, 480))
-    pygame.display.set_caption("Pyllet Town")
+    screen = pygame.display.set_mode((480, 480))
+    pygame.display.set_caption("BTown")
     Game(screen).main()
