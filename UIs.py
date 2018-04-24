@@ -9,7 +9,8 @@ class BattleUI(object):
         self.team = team
         self.monsters = monsters
         self.turn = 0
-        self.selected = team[0]
+        self.controlling = team[0]
+        self.targeting = monsters[0]
         self.attacked = None
         self.paths = [3]
         self.paths[0] = os.path.join("..//Sprites2/button.png")
@@ -35,10 +36,12 @@ class BattleUI(object):
             selected = "run"
         return selected
 
-    def clicked_action(self,):
+    def clicked_action(self):
         if self.selected == "fight":
-            if self.selected.get_attack > self.attacked.get_hp:
-                self.attacked.set_hp(self, 0)
+            if self.controlling.get_attack > self.targeting.get_hp:
+                self.targeting.set_hp(self, 0)
+                del monsters[monsters.index(targeting)]
+                #This is supposed to delete, but might not actually work for some reason.
             else:
-                self.attacked.set_hp(self, self.attacked.get_hp -
-                                     self.selected.get_attack)
+                self.targeting.set_hp(self, self.targeting.get_hp -
+                                     self.targeting.get_attack)
