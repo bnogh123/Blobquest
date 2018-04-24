@@ -3,25 +3,17 @@
  <tileset firstgid="1" name="scifitiles-sheet" tilewidth="16" tileheight="16" tilecount="336" columns="28">
   <image source="sprites/scifitiles-sheet.png" width="448" height="192"/>
  </tileset>
- <tileset firstgid="337" name="triggers" tilewidth="16" tileheight="16" tilecount="48" columns="12">
-  <image source="sprites/triggers.png" width="192" height="64"/>
-  <tile id="13">
-   <properties>
-    <property name="playerStart" value="down"/>
-   </properties>
-  </tile>
- </tileset>
  <layer name="background" width="15" height="10">
   <data encoding="base64" compression="zlib">
    eJzjZmBg4ANiXiJpfiAWAGIbII4H4iQgTiRAawKxFhBrA7EOVK8zELsBsSsJtAeJ9iLTKVSwdzIQTyHT3vVAvIFMe08D8RkgngnEs5DouUA8D4s4iJ4DxBFAbAvEdlhoZiBmwSMfDcSRQByFhZYHYgUc8jA2AFa6L2E=
   </data>
  </layer>
- <layer name="foreground" width="15" height="10">
+ <layer name="foreground" width="15" height="10" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzty8sNgCAURNF59o+/LhS1CwTtA+rgVqAmJq68ycmsxklq0aHHgFHPci++E2Z4LFixIaPcbMCOiIQDJ8ykxq7375sqlrwXlA==
+   eJzdz8sNQFAQheG59ihIIary3Lk04NmFZx/U4V/YES5LJ/lyksnMYkS+J0CICDESpBd7GTRyFMesRIUaDVp0WLE9dI8BIybMWKCUiKXu2zQ2HLjwzM9O//ovb/+SHRwwGSs=
   </data>
  </layer>
- <layer name="triggers" width="15" height="10" visible="0">
+ <layer name="triggers" width="15" height="10">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo4D6AAACWAAB
   </data>

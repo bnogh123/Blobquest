@@ -9,8 +9,7 @@ class BattleUI(object):
         self.team = team
         self.monsters = monsters
         self.turn = 0
-        self.controlling = team[0]
-        self.targeting = monsters[0]
+        self.selected = team[0]
         self.attacked = None
         self.paths = [3]
         self.paths[0] = os.path.join("..//Sprites2/button.png")
@@ -36,13 +35,18 @@ class BattleUI(object):
             selected = "run"
         return selected
 
-    def clicked_action(self):
+    def clicked_action(self,):
         if self.selected == "fight":
+<<<<<<< HEAD
             if self.controlling.get_attack > self.targeting.get_hp:
                 self.targeting.set_hp(self, 0)
                 del self.monsters[self.monsters.index(self.targeting)]
                 #This is supposed to delete, but might not 
                 # actually work for some reason.
+=======
+            if self.selected.get_attack > self.attacked.get_hp:
+                self.attacked.set_hp(self, 0)
+>>>>>>> parent of 0b3c0ef... Merge branch 'master' of https://github.com/bnogh123/Blobquest
             else:
-                self.targeting.set_hp(self, self.targeting.get_hp -
-                                     self.targeting.get_attack)
+                self.attacked.set_hp(self, self.attacked.get_hp -
+                                     self.selected.get_attack)

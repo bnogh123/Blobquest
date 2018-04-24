@@ -1,6 +1,7 @@
 # import os
 import pygame
 
+<<<<<<< HEAD
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, location, orientation, *groups):
@@ -27,14 +28,15 @@ class Enemy(pygame.sprite.Sprite):
         elif self.orient == 'right':
             self.image.scroll(0, -48)
 
+=======
+>>>>>>> parent of 0b3c0ef... Merge branch 'master' of https://github.com/bnogh123/Blobquest
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, location, orientation, size, *groups):
+    def __init__(self, location, orientation, *groups):
         super(Player, self).__init__(*groups)
         self.image = pygame.image.load('sprites/nora01.png')
         self.imageDefault = self.image.copy()
-        self.rect = pygame.Rect(location, (int(size[0]), int(size[1])))
-        self.size = size
+        self.rect = pygame.Rect(location, (64, 64))
         self.orient = orientation
         self.holdTime = 0
         self.walking = False
@@ -49,17 +51,13 @@ class Player(pygame.sprite.Sprite):
         # and scrolls it to the necessary position for the current orientation
         self.image = self.imageDefault.copy()
         if self.orient == 'up':
-            self.image.scroll(int(self.size[0] * 0),
-                              int(self.size[1] * -1))
+            self.image.scroll(0, -16)
         elif self.orient == 'down':
-            self.image.scroll(int(self.size[0] * -1),
-                              int(self.size[1] * -1))
+            self.image.scroll(0, 0)
         elif self.orient == 'left':
-            self.image.scroll(int(self.size[0] * -2),
-                              int(self.size[1] * -1))
+            self.image.scroll(0, -32)
         elif self.orient == 'right':
-            self.image.scroll(int(self.size[0] * -3),
-                              int(self.size[1] * -1))
+            self.image.scroll(0, -48)
 
     def update(self, dt, game):
         key = pygame.key.get_pressed()
@@ -98,9 +96,9 @@ class Player(pygame.sprite.Sprite):
         # Walking at 8 pixels per frame in the direction the player is facing
         if self.walking and self.dx < 32:
             if self.orient == 'up':
-                self.rect.y -= 8
+                self.rect.y -= 4
             elif self.orient == 'down':
-                self.rect.y += 8
+                self.rect.y += 4
             elif self.orient == 'left':
                 self.rect.x -= 8
             elif self.orient == 'right':
@@ -121,9 +119,22 @@ class Player(pygame.sprite.Sprite):
 
             return
         # Switch to the walking sprite after 32 pixels
+<<<<<<< HEAD
         if self.dx == 32:
             # self.image.scroll(-64, 0)
             self.step = 'leftFoot'
+=======
+        # if self.dx == 32:
+            # # Self.step keeps track of when to flip the sprite so that
+            # # the character appears to be taking steps with different feet.
+            # if (self.orient == 'up' or
+            #         self.orient == 'down') and self.step == 'leftFoot':
+            #     self.image = pygame.transform.flip(self.image, True, False)
+            #     self.step = 'rightFoot'
+            # else:
+            #     self.image.scroll(-64, 0)
+            #     self.step = 'leftFoot'
+>>>>>>> parent of 0b3c0ef... Merge branch 'master' of https://github.com/bnogh123/Blobquest
         # After traversing 64 pixels, the walking animation is done
         if self.dx == 64:
             self.walking = False
@@ -171,7 +182,7 @@ class SpriteLoop(pygame.sprite.Sprite):
         if self.timeCount > self.mspf:
             # Advance animation to the appropriate frame
             self.image = self.defaultImage.copy()
-            # self.image.scroll(-1 * self.width * self.frameCount, 0)
+            self.image.scroll(-1 * self.width * self.frameCount, 0)
             self.timeCount = 0
 
             self.frameCount += 1
