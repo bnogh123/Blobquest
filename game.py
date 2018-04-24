@@ -1,6 +1,6 @@
 import pygame
 import tmx
-from Mobs import *
+from mobs import *
 
 
 class Game(object):
