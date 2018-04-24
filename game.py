@@ -1,12 +1,11 @@
 import pygame
 import tmx
-from mobs import *
+from Mobs import *
 
 
 class Game(object):
-    def __init__(self, screen, mapp):
+    def __init__(self, screen):
         self.screen = screen
-        self.mapp = mapp
 
     def fadeOut(self):
         """Animate the screen fading to black for entering a new area"""
@@ -40,14 +39,14 @@ class Game(object):
             self.tilemap.layers.append(self.objects)
         # Initializing player sprite
         startCell = self.tilemap.layers['triggers'].find('playerStart')[0]
-        self.player = Player((startCell.px, startCell.py),
-                             startCell['playerStart'], self.players)
+        self.nora = Player((startCell.px, startCell.py),
+                           startCell['playerStart'], [32, 40], self.players,)
         self.tilemap.layers.append(self.players)
-        self.tilemap.set_focus(self.player.rect.x, self.player.rect.y)
+        self.tilemap.set_focus(self.nora.rect.x, self.nora.rect.y)
 
     def main(self):
         clock = pygame.time.Clock()
-        self.initArea(self.mapp)
+        self.initArea('BTown.tmx')
 
         while 1:
             dt = clock.tick(30)
@@ -62,19 +61,10 @@ class Game(object):
             screen.fill((0, 0, 0))
             self.tilemap.draw(self.screen)
             pygame.display.flip()
-    class Splash(object):
-        def __init__(self, screen, mapp):
-        self.screen = screen
-        self.mapp = mapp
-
-        def start(self):
-            #Check if enter key is pressed. When it is, change screen 
 
 
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode((640, 480))
-    pygame.display.set_caption("Pyllet Town")
-    game = Splash(screen, mapp)
-    game = Game(screen, mapp)
-    game.main()
+    screen = pygame.display.set_mode((480, 480))
+    pygame.display.set_caption("BTown")
+    Game(screen).main()
