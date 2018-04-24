@@ -1,11 +1,12 @@
 import pygame
 import tmx
-from mobs import *
+from Mobs import *
 
 
 class Game(object):
-    def __init__(self, screen):
+    def __init__(self, screen, mapp):
         self.screen = screen
+        self.mapp = mapp
 
     def fadeOut(self):
         """Animate the screen fading to black for entering a new area"""
@@ -46,7 +47,7 @@ class Game(object):
 
     def main(self):
         clock = pygame.time.Clock()
-        self.initArea('BTown.tmx')
+        self.initArea(self.mapp)
 
         while 1:
             dt = clock.tick(30)
@@ -61,10 +62,19 @@ class Game(object):
             screen.fill((0, 0, 0))
             self.tilemap.draw(self.screen)
             pygame.display.flip()
+    class Splash(object):
+        def __init__(self, screen, mapp):
+        self.screen = screen
+        self.mapp = mapp
+
+        def start(self):
+            #Check if enter key is pressed. When it is, change screen 
 
 
 if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode((640, 480))
     pygame.display.set_caption("Pyllet Town")
-    Game(screen).main()
+    game = Splash(screen, mapp)
+    game = Game(screen, mapp)
+    game.main()
