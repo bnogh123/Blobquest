@@ -1,19 +1,22 @@
 # import os
 import pygame
 
+
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, location, orienation, *groups):
+    def __init__(self, location, orientation, *groups):
         super(Enemy, self).__init__(*groups)
         self.ijmage = pygame.image.load('sprites/enemy.png')
-        #set the actual path to the enemy png
+        # set the actual path to the enemy png
         self.imageDefault = self.image.copy()
         self.rect = pygame.Rect(location, (64, 64))
         self.orient = orientation
-        self.stats = Stats(1,1)
+        self.stats = Stats(1, 1)
         self.setSprite()
 
     def setSprite(self):
-        # Basically the same as for the player, but numbers need to be adjusted to account for different character
+        # Basically the same as for the player,
+        # but numbers need to be adjusted to account
+        # for different character
         self.image = self.imageDefault.copy()
         if self.orient == 'up':
             self.image.scroll(0, -16)
@@ -119,7 +122,7 @@ class Player(pygame.sprite.Sprite):
             return
         # Switch to the walking sprite after 32 pixels
         if self.dx == 32:
-            self.image.scroll(-64, 0)
+            # self.image.scroll(-64, 0)
             self.step = 'leftFoot'
         # After traversing 64 pixels, the walking animation is done
         if self.dx == 64:

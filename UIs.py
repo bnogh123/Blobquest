@@ -40,8 +40,9 @@ class BattleUI(object):
         if self.selected == "fight":
             if self.controlling.get_attack > self.targeting.get_hp:
                 self.targeting.set_hp(self, 0)
-                del monsters[monsters.index(targeting)]
-                #This is supposed to delete, but might not actually work for some reason.
+                del self.monsters[self.monsters.index(self.targeting)]
+                #This is supposed to delete, but might not 
+                # actually work for some reason.
             else:
                 self.targeting.set_hp(self, self.targeting.get_hp -
                                      self.targeting.get_attack)
