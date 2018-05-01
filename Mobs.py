@@ -118,11 +118,11 @@ class Player(pygame.sprite.Sprite):
 
             return
         # Switch to the walking sprite after 32 pixels
-        if self.dx == 32:
-            self.image.scroll(-64, 0)
+        if self.dx == 16:
+            self.image.scroll(0, 0)
             self.step = 'leftFoot'
         # After traversing 64 pixels, the walking animation is done
-        if self.dx == 64:
+        if self.dx == 32:
             self.walking = False
             self.setSprite()
             self.dx = 0
