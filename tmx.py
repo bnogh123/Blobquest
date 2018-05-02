@@ -724,7 +724,7 @@ class TileMap(object):
 
     _old_focus = None
 
-    def set_focus(self, fx, fy, force=False):
+    def set_focus(self, fx: object, fy: object, force: object = False) -> object:
         '''Determine the viewport based on a desired focus pixel in the
         Layer space (fx, fy) and honoring any bounding restrictions of
         child layers.

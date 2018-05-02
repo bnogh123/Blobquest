@@ -1,8 +1,36 @@
 import os
 import pygame
+import game.py
+
+class BattleUI(game):
+
+    def __init__(self, screens, battle):
+        super(BattleUI, self).__init__(screens)
+        self.battle = battle
+
+    def initArea(self, mapFile):
+        """Load maps and initialize sprite layers for each new area"""
+        self.tilemap = tmx.load(mapFile, screen.get_size())
+        self.players = tmx.SpriteLayer()
+        self.objects = tmx.SpriteLayer()
+        # Initializing other animated sprites
+        try:
+            for cell in self.tilemap.layers['sprites'].find('src'):
+                SpriteLoop((16, 20), cell, self.objects)
+        # In case there is no sprite layer for the current map
+        except KeyError:
+            pass
+        else:
+            self.tilemap.layers.append(self.objects)
+        # Initializing player sprite
+        startCell = [480, 480]
+        self.nora = Player((startCell.px, startCell.py),
+                           startCell['playerStart'], [32, 40], self.players,)
+        self.tilemap.layers.append(self.players)
+        # self.tilemap.set_focus(self.nora.rect.x, self.nora.rect.y)
 
 
-class BattleUI(object):
+class Battle(object):
 
     def __init__(self, team, monsters):
         super._init_(self)
