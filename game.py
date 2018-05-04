@@ -39,7 +39,7 @@ class Game(object):
             self.tilemap.layers.append(self.objects)
         # Initializing player sprite
         startCell = self.tilemap.layers['triggers'].find('playerStart')[0]
-        self.nora = Player((startCell.px, startCell.py),
+        self.nora = Player((startCell.px + 16, startCell.py),
                            startCell['playerStart'], [32, 40], self.players,)
         self.tilemap.layers.append(self.players)
         self.tilemap.set_focus(self.nora.rect.x, self.nora.rect.y)

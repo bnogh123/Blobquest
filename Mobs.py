@@ -95,14 +95,14 @@ class Player(pygame.sprite.Sprite):
         # Walking at 8 pixels per frame in the direction the player is facing
         if self.walking and self.dx < 32:
             if self.orient == 'up':
-                self.rect.y -= 8
+                self.rect.y -= 4
             elif self.orient == 'down':
-                self.rect.y += 8
+                self.rect.y += 4
             elif self.orient == 'left':
-                self.rect.x -= 8
+                self.rect.x -= 4
             elif self.orient == 'right':
-                self.rect.x += 8
-            self.dx += 8
+                self.rect.x += 4
+            self.dx += 4
         # Collision detection:
         # Reset to the previous rectangle if player collides
         # with anything in the foreground layer
