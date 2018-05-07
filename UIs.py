@@ -54,6 +54,15 @@ class Battle(object):
         self.insert(self.paths[1], 1)
         self.insert(self.paths[2], 2)
 
+    def load_monsters(self):
+        self.monsters[0] = e0
+        self.monsters[1] = e1
+        self.monsters[2] = e2
+        e0 = Enemy()
+        e1 = Enemy()
+        e2 = Enemy()
+        #We need to load up the correct variables for orientation here
+        
     def button_type(self):
         selected = None
         if self.current_index == 0:
