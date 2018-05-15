@@ -39,4 +39,6 @@ class Stats:
     def get_hp(self):
         return self.__hp__
 
-main()
+if __name__ == '__main__':
+
+    main()
