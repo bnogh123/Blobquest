@@ -103,6 +103,9 @@ class Player(pygame.sprite.Sprite):
             elif self.orient == 'right':
                 self.rect.x += 4
             self.dx += 4
+            randnum = random.randint(1, 10)
+            if randnum == 5:
+                battleStart()
         # Collision detection:
         # Reset to the previous rectangle if player collides
         # with anything in the foreground layer
